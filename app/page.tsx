@@ -1,9 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
-  return (
-    <main>
-      <h1 className="text-lg py-5">Hello</h1>
-    </main>
-  );
+  return <main>Hello</main>;
 }
