@@ -1,11 +1,21 @@
 import Link from "next/link";
+import Login from "../auth/Login";
+import LoggedIn from "../auth/LoggedIn";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
 
 export default async function Nav() {
+  const session = await getServerSession(authOptions);
+
   return (
     <nav className="flex justify-between items-center py-8">
       <Link className="" href={"/"}>
-        <h1 className="text-black">Send</h1>
+        <h1 className="font-bold text-lg">PostHub</h1>
       </Link>
+      <ul className="flex items-center gap-6">
+        {!session?.user && <Login />}
+        {session?.user && <LoggedIn />}
+      </ul>
     </nav>
   );
 }

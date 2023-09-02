@@ -2,13 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "./components/Nav";
-import { Roboto } from "@next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-roboto",
-});
+// import AuthContext from "./auth/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`mx-4 md:mx-48 xl:mx-96 ${roboto.variable} font-sans bg-gray-200`}
-      >
+      <body className={`mx-4 md:mx-48 xl:mx-96 font-sans bg-gray-200`}>
+        {/* <AuthContext> */}
         <Nav />
         {children}
+        {/* </AuthContext> */}
       </body>
     </html>
   );
