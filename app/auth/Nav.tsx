@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Login from "../auth/Login";
-import LoggedIn from "../auth/LoggedIn";
+import Login from "./Login";
+import LoggedIn from "./LoggedIn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
 
@@ -14,7 +14,7 @@ export default async function Nav() {
       </Link>
       <ul className="flex items-center gap-6">
         {!session?.user && <Login />}
-        {session?.user && <LoggedIn />}
+        {session?.user && <LoggedIn image={session.user?.image || ""} />}
       </ul>
     </nav>
   );

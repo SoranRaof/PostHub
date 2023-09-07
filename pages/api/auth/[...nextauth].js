@@ -17,7 +17,7 @@ export const authOptions = {
   ],
   session: {
     setTimeout: 6000,
-    strategy: "jwt",
+    strategy: undefined,
   },
 };
 
