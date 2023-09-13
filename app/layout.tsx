@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "./auth/Nav";
+import QueryWrapper from "./auth/QueryWrapper";
 // import AuthContext from "./auth/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`mx-4 md:mx-48 xl:mx-96 font-sans bg-gray-200`}>
-        {/* <AuthContext> */}
-        <Nav />
-        {children}
-        {/* </AuthContext> */}
+        <QueryWrapper>
+          <Nav />
+          {children}
+        </QueryWrapper>
       </body>
     </html>
   );
