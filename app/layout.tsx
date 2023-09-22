@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "./auth/Nav";
 import QueryWrapper from "./auth/QueryWrapper";
-// import AuthContext from "./auth/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

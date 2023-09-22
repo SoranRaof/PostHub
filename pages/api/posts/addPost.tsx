@@ -9,34 +9,42 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const session = await getServerSession(req, res, authOptions);
-    if (!session)
-      return res.status(401).json({ message: "Please sign in to post" });
+    if (!session) {
+      return res
+        .status(401)
+        .json({ message: "Please signin to create a post." });
+    }
+
     const title: string = req.body.title;
 
-    //get user
-    const user = await prisma.user.findUnique({
+    //Get User
+    const prismaUser = await prisma.user.findUnique({
       where: { email: session?.user?.email },
     });
-
-    //check title
+    //Check title
     if (title.length > 300) {
-      return res.status(403).json({ message: "Title is too long" });
-    }
-    if (!title.length) {
-      return res.status(403).json({ message: "Title is empty" });
+      return res.status(403).json({ message: "Please write a shorter post" });
     }
 
-    //create a post
+    if (!title.length) {
+      return res
+        .status(403)
+        .json({ message: "Please write something before we can post it." });
+    }
+
+    //Create Post
     try {
       const result = await prisma.post.create({
         data: {
-          title,
-          userId: user?.id,
+          title: "",
+          content: "",
+          userId: prismaUser.id,
         },
       });
-      return res.status(200).json(result);
-    } catch (error) {
-      res.status(403).json({ err: "Error when making post" });
+      res.status(200).json(result);
+    } catch (err) {
+      console.log(err);
+      res.status(403).json({ err: "Error has occured while making a post" });
     }
   }
 }
